@@ -99,11 +99,12 @@
                 <div class="video-item">
                     <div class="video-wrapper">
                         <iframe 
+                            id="video1"
                             src="happiness.mp4" 
                             title="Video 1" 
                             frameborder="0" 
                             loading="lazy" 
-                            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allow="encrypted-media; picture-in-picture" 
                             allowfullscreen>
                         </iframe>
                     </div>
@@ -113,11 +114,12 @@
                 <div class="video-item">
                     <div class="video-wrapper">
                         <iframe 
+                            id="video2"
                             src="video_2.mp4" 
                             title="Video 2" 
                             frameborder="0" 
                             loading="lazy" 
-                            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allow="encrypted-media; picture-in-picture" 
                             allowfullscreen>
                         </iframe>
                     </div>
@@ -240,11 +242,30 @@
     </div>
 
     <script>
-        // 1. 名片點擊翻轉
+       // 1. 名片點擊翻轉 + 強制防止影片誤觸播放
         const card = document.getElementById('businessCard');
-        card.addEventListener('click', () => {
+        card.addEventListener('click', (event) => {
+            // 阻止點擊事件向外擴散、干擾其他網頁元素
+            event.stopPropagation(); 
+            
+            // 翻轉卡片
             card.classList.toggle('is-flipped');
+            
+            // 🛠️ 核心保險：只要點擊名片，就對影片發送「暫停指令」，切斷一切誤觸
+            stopAllVideos();
         });
+
+        // 停止所有 YouTube 影片的專用函數
+        function stopAllVideos() {
+            const iframes = ['video1', 'video2'];
+            iframes.forEach(id => {
+                const iframe = document.getElementById(id);
+                if (iframe) {
+                    // 透過 YouTube API 強制注入暫停指令
+                    iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                }
+            });
+        }
 
         // 2. 圖片燈箱放大功能
         function openLightbox(element) {
