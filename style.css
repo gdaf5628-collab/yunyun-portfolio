@@ -1,0 +1,484 @@
+/* ==========================================================================
+   1. 基礎重設與變數定義 
+   ========================================================================== */
+:root {
+    --primary-blue: #3a86ff;    
+    --light-blue: #e8f1f5;        
+    --dark-blue: #1d3557;         
+    --accent-blue: #4a90e2;       
+    --text-color: #333333;
+    --bg-white: #ffffff;
+    --transition-smooth: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--text-color);
+}
+
+body {
+    background-color: var(--bg-white);
+    overflow-x: hidden;
+}
+
+/* 共通區塊樣式 */
+.section {
+    padding: 100px 20px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bg-light {
+    background-color: var(--light-blue);
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--dark-blue);
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 4px;
+    background-color: var(--primary-blue);
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+/* ==========================================================================
+   2. 固定導覽列 (Navbar)
+   ========================================================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: #82b2ff;
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+}
+
+.navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #3a86ff;
+}
+
+/* ==========================================================================
+   3. 第一頁：首頁動態大圖 (Hero Section)
+   ========================================================================== */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+}
+
+/* 動態放大縮小大圖效果 */
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(29, 53, 87, 0.4), rgba(29, 53, 87, 0.3)), 
+                url(images/Homepage_picture.jpg) no-repeat center center/cover;
+    animation: zoomEffect 20s infinite alternate;
+    z-index: -1;
+}
+
+@keyframes zoomEffect {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.08); }
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.hero-content p {
+    font-size: 1.25rem;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+/* 往下提示箭頭 */
+.scroll-down {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+}
+
+.arrow {
+    width: 24px;
+    height: 24px;
+    border-left: 3px solid #ffffff;
+    border-bottom: 3px solid #ffffff;
+    transform: rotate(-45deg);
+    animation: bounceArrow 2s infinite;
+}
+
+@keyframes bounceArrow {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0) rotate(-45deg); }
+    40% { transform: translateY(-10px) rotate(-45deg); }
+    60% { transform: translateY(-5px) rotate(-45deg); }
+}
+
+/* ==========================================================================
+   進場動態效果 (滾動淡入)
+   ========================================================================== */
+.fade-in {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: var(--transition-smooth);
+}
+
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   4. 第二頁：卡片式名片（點擊翻轉）
+   ========================================================================== */
+.card-container {
+    width: 638px;
+    height: 383px;
+    perspective: 1000px; /* 3D 透視深度 */
+    margin: 0 auto;
+}
+
+.flip-card {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-radius: 12px;
+}
+
+/* 觸發翻轉後的狀態 */
+.flip-card.is-flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* 隱藏背面 */
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.flip-card-front img, .flip-card-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.flip-card-back {
+    transform: rotateY(180deg);
+}
+
+.hint-text {
+    text-align: center;
+    margin-top: 25px;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   5. 第三頁：條列式圖文並置
+   ========================================================================== */
+.list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 80px; /* 每組條列之間的間距 */
+    width: 100%;
+}
+
+.split-row {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    width: 100%;
+}
+
+/*圖文順序反轉，自動交錯排版 */
+.split-row:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+/* 圖片框框大小限制 */
+.split-img {
+    flex: 1;
+    width: 100%;
+    height: 350px;         
+    max-width: 500px;      
+    border-radius: 12px;
+    overflow: hidden;      /* 超出框自動裁剪 */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+    background-color: #f5f5f5;
+}
+
+.split-img img {
+    width: 100%;
+    height: 100%;        
+    object-fit: cover;     
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.split-img:hover img {
+    transform: scale(1.05); /* 滑鼠懸停時圖片微微放大的互動動態 */
+}
+
+/* 文字區域控制 */
+.split-text {
+    flex: 1;
+}
+
+.split-text h3 {
+    font-size: 1.8rem;
+    color: var(--dark-blue);
+    margin-bottom: 15px;
+}
+
+.split-text p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #555;
+}
+
+/* 手機版響應式優化：在小螢幕上自動恢復為單欄（圖上文下） */
+@media (max-width: 768px) {
+    .split-row, .split-row:nth-child(even) {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .split-img {
+        max-width: 100%;
+        height: 250px; 
+    }
+    .list-container {
+        gap: 50px;
+    }
+}
+/* ==========================================================================
+   6. 第四頁與第五頁：通用網格與卡片
+   ========================================================================== */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+/* 第四頁：影片區樣式 */
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 比例 */
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    margin-bottom: 15px;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.video-item h4 {
+    font-size: 1.25rem;
+    color: var(--dark-blue);
+    margin-bottom: 8px;
+}
+
+/* 第五頁：圖文卡片與分類樣式 */
+.gallery-subtitle {
+    font-size: 1.4rem;
+    color: var(--accent-blue);
+    margin-bottom: 20px;
+    border-left: 4px solid var(--primary-blue);
+    padding-left: 10px;
+}
+
+.gallery-card {
+    background-color: var(--bg-white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+}
+
+.gallery-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-img {
+    height: 300px;
+    overflow: hidden;
+}
+
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-info {
+    padding: 20px;
+}
+
+.card-info h4 {
+    margin-bottom: 8px;
+    color: var(--dark-blue);
+}
+
+.card-info p {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   7. 圖片燈箱功能 (縮圖點擊變全圖)
+   ========================================================================== */
+.thumbnail {
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.thumbnail img {
+    transition: transform 0.3s;
+}
+
+.thumbnail:hover img {
+    transform: scale(1.05); /* 滑鼠懸停微放大提示可點擊 */
+}
+
+.lightbox {
+    display: none; /* 預設隱藏 */
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(29, 53, 87, 0.9); 
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox-content {
+    max-width: 85%;
+    max-height: 85%;
+    border-radius: 4px;
+    animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.close-btn {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   8. 頁尾 Footer & RWD 響應式優化
+   ========================================================================== */
+.footer {
+    background-color: var(--dark-blue);
+    color: #ffffff;
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+/* 手機與平板適應 */
+@media (max-width: 768px) {
+    .navbar { padding: 0 20px; }
+    .nav-links { display: none; } /* 行動端可再擴充漢堡選單 */
+    .hero-content h1 { font-size: 2.5rem; }
+    .split-container { flex-direction: column; }
+    .section { padding: 70px 20px; }
+}
