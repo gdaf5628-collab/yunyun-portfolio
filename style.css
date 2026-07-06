@@ -134,7 +134,7 @@ body {
     width: 100%;
     height: 100%;
     background: linear-gradient(rgba(29, 53, 87, 0.4), rgba(29, 53, 87, 0.3)), 
-                url(images/Homepage_picture.jpg) no-repeat center center/cover;
+                url(Homepage_picture.jpg) no-repeat center center/cover;
     animation: zoomEffect 20s infinite alternate;
     z-index: -1;
 }
