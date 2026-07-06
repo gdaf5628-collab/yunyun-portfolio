@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>芸芸的個人作品集</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Portfolio</div>
+        <ul class="nav-links">
+            <li><a href="#home">首頁</a></li>
+            <li><a href="#about">個人介紹</a></li>
+            <li><a href="#intro">繪圖比賽</a></li>
+            <li><a href="#videos">錄影比賽</a></li>
+            <li><a href="#gallery">平時作品</a></li>
+        </ul>
+    </nav>
+
+    <header id="home" class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1>歡迎來到作品集網站</h1>
+            <p>這裡是平日心血的聚集地</p>
+        </div>
+        <a href="#about" class="scroll-down">
+            <div class="arrow"></div>
+        </a>
+    </header>
+
+    <section id="about" class="section fade-in">
+        <div class="container">
+            <h2 class="section-title">個人介紹</h2>
+            <div class="card-container">
+                <div class="flip-card" id="businessCard">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="images/image_1.jpg" alt="名片正面">
+                        </div>
+                        <div class="flip-card-back">
+                            <img src="images/image_2.jpg" alt="名片反面">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="hint-text">點擊卡片可翻看背面</p>
+        </div>
+    </section>
+
+    <section id="intro" class="section fade-in bg-light">
+        <div class="container list-container">
+            <h2 class="section-title">繪圖比賽</h2>
+
+            <div class="split-row">
+                <div class="split-img thumbnail" onclick="openLightbox(this)">
+                    <img src="images/image_5.jpg" 
+                         alt="BOOK☆WALKER店長創作祭" 
+                         style="object-position: top center;">
+                </div>
+                <div class="split-text">
+                    <h3>BOOK☆WALKER店長創作祭</h3>
+                    <p>店長有個愛好 -- 喜歡坐在爵士鼓的座椅上瀏覽電子書直到半夜,書架擺放的是她長久以來的藏書們。</p>
+                </div>
+            </div>
+
+            <div class="split-row">
+                <div class="split-img thumbnail" onclick="openLightbox(this)">
+                    <img src="images/image_6.jpg" 
+                         alt="「屬於水母喵的第一抹色彩」" 
+                         style="object-position: center center;">
+                </div>
+                <div class="split-text">
+                    <h3>「屬於水母喵的第一抹色彩」</h3>
+                    <p>水母喵在黯淡無色的海中漂流著，不遠處閃著七彩的星光，她向前捧住來自海的祝福，讓世界繽紛了起來。</p>
+                </div>
+            </div>
+
+            <div class="split-row">
+                <div class="split-img thumbnail" onclick="openLightbox(this)">
+                    <img src="images/image_7.jpg" 
+                         alt="「南應盃」全國原創漫畫大賽" 
+                         style="object-position: top center;">
+                </div>
+                <div class="split-text">
+                    <h3>「南應盃」全國原創漫畫大賽</h3>
+                    <p>炎炎夏日，鈴與朋友黃昏時分在海邊戲水，所有事物被夕陽染上一抹黃，大海更加的耀眼。</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="videos" class="section fade-in">
+        <div class="container">
+            <h2 class="section-title">錄影比賽</h2>
+            <div class="grid-container">
+                <div class="video-item">
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="video/happiness.mp4" 
+                            title="Video 1" 
+                            frameborder="0" 
+                            loading="lazy" 
+                            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <h4>《雲好物》推廣影片競賽</h4>
+                    <p>第一次參與縣府的比賽，很開心能在比賽中獲得佳作。</p>
+                </div>
+                <div class="video-item">
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="video/video_2.mp4" 
+                            title="Video 2" 
+                            frameborder="0" 
+                            loading="lazy" 
+                            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <h4>EYE家鄉開麥拉紀錄短片競賽</h4>
+                    <p>第一支由我剪輯的紀錄短片，剪出來的成果很有成就感。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="section fade-in bg-light">
+        <div class="container">
+            <h2 class="section-title">平時作品</h2>
+            
+            <h3 class="gallery-subtitle">｜ 繪圖創作</h3>
+            <div class="grid-container card-grid">
+                <div class="gallery-card">
+                    <div class="card-img thumbnail" onclick="openLightbox(this)">
+                        <img src="images/image_3.jpg" alt="平日作品1" style="object-position: top center;">
+                    </div>
+                    <div class="card-info">
+                        <h4>Mimosa</h4>
+                        <p>最喜愛的作品。</p>
+                    </div>
+                </div>
+
+                <div class="gallery-card">
+                    <div class="card-img thumbnail" onclick="openLightbox(this)">
+                        <img src="images/image_4.jpg" alt="平日作品2"  style="object-position: center center;">
+                    </div>
+                    <div class="card-info">
+                        <h4>Zanka and Enjin</h4>
+                        <p>嘗試在作品中加入更多細節。</p>
+                    </div>
+                </div>
+
+                <div class="gallery-card">
+                    <div class="card-img thumbnail" onclick="openLightbox(this)">
+                        <img src="images/image_14.jpg" alt="平日作品3"  style="object-position: top center;">
+                    </div>
+                    <div class="card-info">
+                        <h4>Skirk</h4>
+                        <p>畫過最複雜的一張。</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="gallery-subtitle" style="margin-top: 40px;">｜ 課堂作業</h3>
+            <div class="grid-container card-grid">
+                <div class="gallery-card">
+                    <div class="card-img thumbnail" onclick="openLightbox(this)">
+                        <img src="images/image_8.jpg" alt="高中向量作業">
+                    </div>
+                    <div class="card-info">
+                        <h4>海洋生態 Marine ecology</h4>
+                        <p>高中時期最滿意的作品。</p>
+                    </div>
+                </div>
+
+                <div class="gallery-card">
+                    <div class="card-img thumbnail" onclick="openLightbox(this)">
+                        <img src="images/image_9.jpg" alt="素描1">
+                    </div>
+                    <div class="card-info">
+                        <h4>無盡的撲克牌 Endless Playing Cards</h4>
+                        <p>對潘洛斯階梯感興趣時所畫出來的作品。</p>
+                    </div>
+                </div>
+
+                <div class="gallery-card">
+                    <div class="card-img thumbnail" onclick="openLightbox(this)">
+                        <img src="images/image_10.jpg" alt="素描2">
+                    </div>
+                    <div class="card-info">
+                        <h4>時 Time</h4>
+                        <p>時間與樹輪保留下的故事。</p>
+                    </div>
+                </div>
+
+                <div class="gallery-card">
+                    <div class="card-img thumbnail" onclick="openLightbox(this)">
+                        <img src="images/image_11.jpg" alt="水彩1">
+                    </div>
+                    <div class="card-info">
+                        <h4>水彩系列作品-Red</h4>
+                        <p>系列第一張，楓葉林中的紅茶。</p>
+                    </div>
+                </div>
+
+                <div class="gallery-card">
+                    <div class="card-img thumbnail" onclick="openLightbox(this)">
+                        <img src="images/image_12.jpg" alt="水彩2">
+                    </div>
+                    <div class="card-info">
+                        <h4>水彩系列作品-Green</h4>
+                        <p>系列第二張，草地上的野餐</p>
+                    </div>
+                </div>
+
+                <div class="gallery-card">
+                    <div class="card-img thumbnail" onclick="openLightbox(this)">
+                        <img src="images/image_13.jpg" alt="水彩3">
+                    </div>
+                    <div class="card-info">
+                        <h4>水彩系列作品-Blue</h4>
+                        <p>系列第三張，作家的藍色時光</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>Copyright © 2026 芸芸的個人作品集 All Rights Reserved.</p>
+    </footer>
+
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="close-btn">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <script>
+        // 1. 名片點擊翻轉
+        const card = document.getElementById('businessCard');
+        card.addEventListener('click', () => {
+            card.classList.toggle('is-flipped');
+        });
+
+        // 2. 圖片燈箱放大功能
+        function openLightbox(element) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const imgSrc = element.querySelector('img').src;
+            lightbox.style.display = "flex";
+            lightboxImg.src = imgSrc;
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = "none";
+        }
+
+        // 3. 滾動進入下一頁的動態淡入效果 (Intersection Observer)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+    </script>
+</body>
+</html>
